@@ -42,6 +42,44 @@ How do we reveal causality instead of simple correlation with **reasonable compl
 
 How do we clarify the time interval we select is meaningful? For example, we plan to start our discussion from 2016/01 to 2022/03. But how do we prove the change in this interval is due to COVID rather than other social factors?
 
+### Interrupted Time Series Analysis
+These concepts & techniques seem to be suitable for our problem and consideration. Even though the technique is not beyond the ordinary time series method very much, the important thing is the area of interrupted time series systematizing the related conceptions.
+
+<br/>
+
+I list some reference material here:
+
+[Interrupted Time Series-DS4PS](https://ds4ps.org/pe4ps-textbook/docs/p-020-time-series.html): A basic introduction to Interrupted Time Series, based on segmented linear model. Introduce some basic concepts:immediate & sustain effect, delay(lag),regression to mean, control groups for valid threat.
+
+[Interrupted time series regression for the evaluation of public health interventions: a tutorial
+](https://pubmed.ncbi.nlm.nih.gov/27283160/): A systematic introduction based on segment linear model with everything important to consider. The orchestration order is the pipeline of time series analysis. This paper clarify the central consideration in each step.
+
+[Interrupted time series analysis using autoregressive integrated moving average (ARIMA) models: a guide for evaluating large-scale health interventions](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-021-01235-8) A systematic introduction to ARIMA Interrupted Time Series with working example. I think it is the most complex degree we can reach.
+
+[its.package](https://cran.r-project.org/web/packages/its.analysis/index.html) R package for interrupted time series, based on Type-2 Sum Squares ANCOVA Lagged Dependent Variable model. I think it is too complex to implement in our situation. But it is still a good preparation.
+
+Even though the interrupted time series is not best, we can use the arguments in these papers for solider work. I think they are enough for such a student project.
+
+<br/>
+
+The resource for interrupted time series analysis is adequete:
+
+[The effect of the late 2000s financial crisis on suicides in Spain: an interrupted time-series analysis](https://pubmed.ncbi.nlm.nih.gov/23804080/): The most population for interrupted time series I found.
+
+The reference for COVID's impact on society based on interrupted time series analysis is also adequete, the situation is very similar to us. They are also considering wellbeing. We could even replicate some of them for our results.
+
+[Examining the immediate effects of COVID-19 on residential and commercial burglaries in Michigan: An interrupted time-series analysis](https://www.sciencedirect.com/science/article/pii/S0047235221000544)
+
+[Effects of the COVID-19 pandemic on heart failure hospitalizations in Japan: interrupted time series analysis](https://pubmed.ncbi.nlm.nih.gov/34913269/)
+
+[Suicide trends in the early months of the COVID-19 pandemic: an interrupted time-series analysis of preliminary data from 21 countries](https://www.thelancet.com/journals/lanpsy/article/PIIS2215-0366(21)00091-2/fulltext)
+
+[Disentangling the Impact of Covid-19: An Interrupted Time Series Analysis of Crime in New York City](https://pubmed.ncbi.nlm.nih.gov/35079215/)
+
+
+
+
+
 ## advanced quantitative analysis 
 The main requirement for this sub-task is to explore more things that we don't do it in the basic quantitatibe analysis. Their difference is: in the basic quantitative analysis, we emphasize on solid analysis. in the exploration, we emphasize on creativity.
 
