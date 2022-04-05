@@ -29,6 +29,8 @@ Looking at the pre-intervention trend can give an indication:
 ### Step 4: Regression Analysis
 model: $Y_t = \beta_0 + \beta_1 T + \beta_2 X_t + \beta_3 TX_t$
 
+use ANOVA to show whether it is necessary to add a new effect to our model.
+
 **offset variable** is a special technique for Poison regression to match count and ratio.
 
 **Notice**: the population may change(though this is not essential if the population is relatively stable over time)
