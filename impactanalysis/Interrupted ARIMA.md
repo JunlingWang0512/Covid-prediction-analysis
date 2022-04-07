@@ -74,6 +74,66 @@ Lag:
 **Solution**: include time as covariate and use ARMA models(for autocorrelation) to estimate the intervention trend.
 
 ### Fitting an ARIMA model
+aim: select the most **parsimonious** model that has good fit and adequately controls for autocorrelation and seasonality.
 ![](pics/ARIMAflowchart.webp)
+Box-Jenkins method
+implement:
+* automated algorithm
+* manual process
+
+##### Plot data to understand patterns
+how to deal with outliers depend on their cause and influence on the model.
+
+##### Transform data to stabilise variance(if necessary)
+log-transformation for changing variance
+
+##### Model Selection
+estimate $p, q$ on ACF/PACF plots
+###### (a) determine differencing order to induce stationarity
+trend: first order difference $d=1$
+
+seasonality: seasonal difference $D=1$
+
+test stationarty:
+* ACF plot
+* unit-root tests(e.g. Dickey-Fuller test)
+
+###### (b) Plot the ACF/PACF of stationary data to determine potential AR/MA orders
+Usually models will require only AR terms or MA terms, rarely both.
+* AR:tails off or is sinusoidal in **ACF**, cuts off lag $p$ in **PACF**
+* MA: cut off lag $q$ in **ACF**, tails off or is sinusoidal in **PACF**
+* ARMA: tail off or is sinusoidal in both **ACF** and **PACF**
+
+
+###### (c) estimate model and use information criteria to find the best model
+use information criteria (AIC, BIC) to help identify the best model.
+
+*automated algorithm does not guarantee a well-fitting model*
+
+
+##### Check if residuals of chosen model are white noise
+test autocorrelation; Ljung-Box test
+A transformation may help with non-normally distributed residuals
+
+
+### Transfer Function
+WHY:  move beyond the basic intervention impact shapes.
+$$
+Y_t = \mu + \frac{\omega_0+\omega_1 B+\omega_2 B^2 + \cdots+\omega_hB^h}{1-\delta_1B-\delta_2 B^2 - \cdots - \delta_r B^r} X_t + \varepsilon_t \\
+B^p X_t = X_{t-p}
+$$
+$\omega_0$ initial value for the impact of the intervention
+$T$ the time of the intervention
+$\delta$ decay rate
+$X_t$ the intervention variable
+$h$ when the effect happen
+$r$ decay pattern
+
+### Appendix
+Defect: ITS cannot exclude the possibility that any observed change was due to *the intervention of interest* or *another co-intervention*.
+
+Box Jenkins: 50 time points.
+
+
 
 
