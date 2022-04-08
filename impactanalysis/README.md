@@ -56,6 +56,10 @@ I list some reference material here:
 
 [Interrupted time series analysis using autoregressive integrated moving average (ARIMA) models: a guide for evaluating large-scale health interventions](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-021-01235-8) A systematic introduction to ARIMA Interrupted Time Series with working example. I think it is the most complex degree we can reach.
 
+[Using intervention time series analysis to assess the effects of imperfectly identifiable natural events: a general method and example](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/1471-2288-6-16) Most ITSA are used for estimating policy, since clear start date. However, clear start date is not available and essential in most situation. This paper discuss the related issues.
+
+
+
 [its.package](https://cran.r-project.org/web/packages/its.analysis/index.html) R package for interrupted time series, based on Type-2 Sum Squares ANCOVA Lagged Dependent Variable model. I think it is too complex to implement in our situation. But it is still a good preparation.
 
 Even though the interrupted time series is not best, we can use the arguments in these papers for solider work. I think they are enough for such a student project.
@@ -76,7 +80,9 @@ The reference for COVID's impact on society based on interrupted time series ana
 
 [Disentangling the Impact of Covid-19: An Interrupted Time Series Analysis of Crime in New York City](https://pubmed.ncbi.nlm.nih.gov/35079215/)
 
+[Effectiveness of employer financial incentives in reducing time to report worker injury: an interrupted time series study of two Australian workers’ compensation jurisdictions](https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-017-4998-9) (segmented linear model + ARMA)
 
+[Evolutionary cost analysis of valsartan initiation among patients with hypertension: a time series approach](https://pubmed.ncbi.nlm.nih.gov/22011107/)（segmented linear model + ARMA）
 
 
 
@@ -93,4 +99,5 @@ I recommend this work begin after the basic quantitative analysis for reference 
 [OECD](https://data.oecd.org/)
 
 [Google Trends](https://trends.google.com/trends/?geo=CH)
+
 

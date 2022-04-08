@@ -89,6 +89,11 @@ log-transformation for changing variance
 
 ##### Model Selection
 estimate $p, q$ on ACF/PACF plots
+
+choosing between candidate functions
+* model parsimony
+* minimization of information criteria
+* ANOVA-type test
 ###### (a) determine differencing order to induce stationarity
 trend: first order difference $d=1$
 
