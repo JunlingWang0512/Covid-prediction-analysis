@@ -23,11 +23,13 @@ library(tseries)
 
 First, we discuss about the simplest situation - COVID's impact on zoom.
 The exact question is: How does the SAH policy influence on the ultilize of Zoom, which represent people' change in work-coordinate way.
+
 Why?
+
 First, the intervention date is extremely clear.
 <https://www.swissinfo.ch/eng/coronavirus_did-the-swiss-stay--at-home-during-the-coronavirus-lockdown-/45722614> The Swiss has a consist stay at home policy, which is not available in many countries.
-Second, the impact effect comes on immediately.
-From our experience, courses are online on zoom if it is not in the classroom.
+
+Second, the impact effect comes on immediately.From our experience, courses are online on zoom if it is not in the classroom.
 Third, searching for zoom can be assumed to reflect using for zoom.
 accessing zoom via browser is the main way.
 
@@ -35,29 +37,37 @@ accessing zoom via browser is the main way.
 
 We use the data from last 5 years with granularity of week.
 Why?
-First, Granularity: the policy intervention is on March 16th, Monday.
-The granularity of month is too coarse for mid-term happened intervention.
 
-Second, Ending Date: even though the SAH policy is cancelled now, the ending date is <https://www.swissinfo.ch/eng/swiss-anti-covid-curbs-to-remain-at-least-until-end-of-february/47274772>.
-<https://www.swissinfo.ch/eng/covid-19_coronavirus--the-situation-in-switzerland/45592192> <https://www.swissinfo.ch/eng/switzerland-lifts-most-covid-19-restrictions/47352480?utm_campaign=teaser-in-channel&utm_source=swissinfoch&utm_medium=display&utm_content=o> The related policies are cancelled in 2022 mostly.
-The SAH policy cancel at 2022-02-03.
-Therefore to be convenient, we just set the ending date for 2022.
-We also think that abandoning a little data before exact policy is wise.
+1.  Granularity: the policy intervention is on March 16th, Monday.
+    The granularity of month is too coarse for mid-term happened intervention.
 
-Third, Starting Date: The Starting Date is not very important, we use the date 5 years before now.
-The zoom is released on 2011.
-And there is an improvement to Data Collection System on 2016 for Google Trend.
-The Data after it is also very stable intuitively.
-Theirfore the specific choice of starting date is not essential.
+2.  Ending Date: even though the SAH policy is cancelled now, the ending date is
 
-Why do we use Swiss Data?
-First, we are in Swiss.
-Second, Swiss has consistent policy.
-Thus we use Swiss Data for our analysis
+    1.  <https://www.swissinfo.ch/eng/swiss-anti-covid-curbs-to-remain-at-least-until-end-of-february/47274772>.
+
+    2.  <https://www.swissinfo.ch/eng/covid-19_coronavirus--the-situation-in-switzerland/45592192>
+
+    3.  <https://www.swissinfo.ch/eng/switzerland-lifts-most-covid-19-restrictions/47352480?utm_campaign=teaser-in-channel&utm_source=swissinfoch&utm_medium=display&utm_content=o>
+
+    The related policies are cancelled in 2022 mostly.
+    The SAH policy cancel at 2022-02-03.
+    Therefore to be convenient, we just set the ending date for 2022.
+    We also think that abandoning a little data before exact policy is wise.
+
+3.  Starting Date: The Starting Date is not very important, we use the date 5 years before now.
+    The zoom is released on 2011.
+    And there is an improvement to Data Collection System on 2016 for Google Trend.
+    The Data after it is also very stable intuitively.
+    Theirfore the specific choice of starting date is not essential.
+
+4.  Why do we use Swiss Data?
+    First, we are in Swiss.
+    Second, Swiss has consistent policy.
+    Thus we use Swiss Data for our analysis
 
 ## Basic Data Analysis
 
-laod data and convert it to time series
+load data and convert it to time series
 
 ```{r}
 zoom <- read.csv(file="../data/impact/zoomSwiss.csv")
@@ -72,7 +82,6 @@ The indicator from Google Trend is scaled mandatorily.
 The maximum in data must be 100, and the other count is proportion to it with rounded to integer.
 
 understand the data directly
-
 ```{r}
 plot(zoom.ts, ylim=c(0,105),type="l",col="blue", xlab="Week", ylab="search popularity", main="Google Search Trend for Zoom(Swiss)",xaxt="n")
 axis(1, at=seq(1, zoom.length, 5),labels=substring(zoom[seq(1,zoom.length,5), 1],3), cex.axis = 0.4, las="2")
@@ -86,14 +95,12 @@ abline(v=stayathome,col="grey",lty="dashed", lwd=2)
 ```
 
 test the stability for the whole time series
-
 ```{r}
 adf.test(zoom.ts)
 adf.test(log(zoom.ts))
 summary(ur.kpss(zoom.ts))
 summary(ur.kpss(log(zoom.ts)))
 ```
-
 KPSS is not stable, I think it is because there is trend.
 ADF test is not important here, because we definitely need to eliminate the trend for intervention.
 
@@ -113,7 +120,6 @@ We monitor it after analysis.
 ## Model Building
 
 set up the intervention effect
-
 ```{r}
 step <- rep(0,zoom.length)
 step[stayathome:zoom.length] <- 1
@@ -203,16 +209,19 @@ The residual is stable from DF test & KPSS test, compared with our raw data!
 The residuals passes the Box-Ljung test: we could regard it as white noise!
 
 ### Other Selection
+
 ```{r}
 m.ar3<-arimax(log(zoom.ts), order=c(3, 0, 0), xreg = data.frame(step, ramp))
 m.ar3
 ```
+
 worse AIC & insignificant coefficients
 
 ```{r}
 m.stable <- arimax(log(zoom.ts), order=c(2, 0, 0), xreg = data.frame(step, ramp))
 m.stable
 ```
+
 General Trend is significant and can improve result indeed.
 
 ```{r}
@@ -220,24 +229,31 @@ m.nocovid <- arimax(log(zoom.ts[1:(stayathome-4)]), order=c(0, 0, 0), xreg = dat
 m.nocovid
 summary(ur.kpss(m.nocovid$residuals))
 ```
+
 Before intervention, it is also meaningful to have a general trend, which can pass the KPSS test for stability.
 
 ```{r}
 m.season <- arimax(log(zoom.ts), order=c(2, 0, 0), seasonal=list(order=c(1,0,0),period=52), xreg = data.frame(step, ramp,time))
 m.season
 ```
+
 test
+
 ```{r}
 confint(m.season)
 adf.test(m.season$residuals)
 summary(ur.kpss(m.season$residuals))
 Box.test(m.season$residuals, lag = 80, type = "Ljung-Box")
 ```
-The coefficient for seasonal model is not significant to our noun but it is close to it. The seasonality could decrease AIC slightly and the p-value for Box-Ljung test can also be slightly bigger. We have more chance to admit the residuals are white noise.
+
+The coefficient for seasonal model is not significant to our noun but it is close to it.
+The seasonality could decrease AIC slightly and the p-value for Box-Ljung test can also be slightly bigger.
+We have more chance to admit the residuals are white noise.
 Thus we could say considering the seasonal effect improve the model slightly.
 Due to the parsimony, we regard it as a candidate model.
 
 Here is explanation for seasonality in our situation.
 In our experience, there should be seasonality for our data.
-Because, one heavy use of zoom is online course.As is known, there is no online course in summer and winter vacation. Therefore there should be a seasonality.
+Because, one heavy use of zoom is online course.As is known, there is no online course in summer and winter vacation.
+Therefore there should be a seasonality.
 However, the seasonality might not be obvious.The effect of this seasonality is not harmonious before or after intervention and can be ignored compared with current fluctuation.
