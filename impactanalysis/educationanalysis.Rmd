@@ -30,7 +30,8 @@ First, the intervention date is extremely clear.
 <https://www.swissinfo.ch/eng/coronavirus_did-the-swiss-stay--at-home-during-the-coronavirus-lockdown-/45722614> The Swiss has a consist stay at home policy, which is not available in many countries.
 
 Second, the impact effect comes on immediately.From our experience, courses are online on zoom if it is not in the classroom.
-Third, searching for zoom can be assumed to reflect using for zoom.
+
+Third, searching for zoom can be assumed to reflect using for zoom in some degree.
 accessing zoom via browser is the main way.
 
 ## Data Selection
