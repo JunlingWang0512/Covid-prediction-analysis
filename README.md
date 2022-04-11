@@ -1,7 +1,7 @@
 # Covid-prediction-analysis
 division of labour:
-* Alex : explore more dataset & methods for COVID's impact on society
-* Aojie : machine learning COVID data prediction
+* Alex : COVID's impact on society with advanced methods, such as Granger Causality
+* Aojie : machine learning COVID data prediction(Prophet)
 * Elisabeth : quanlitative analysis and literature summary for COVID's impact on society
 * Junling : SEIR COVID data prediction
-* Shanglun : analyze COVID' impact on society with solid work
+* Shanglun : COVID' impact on society with intervention time series method
