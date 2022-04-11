@@ -4,4 +4,4 @@ division of labour:
 * Aojie : machine learning COVID data prediction(Prophet)
 * Elisabeth : quanlitative analysis and literature summary for COVID's impact on society
 * Junling : SEIR COVID data prediction
-* Shanglun : COVID' impact on society with intervention time series method
+* Shanglun : COVID' impact on society with interrupted time series method
