@@ -13,6 +13,7 @@ ITS is considered one of the best designs for establishing causality when RCT ar
 
 #### non-stationarity
 ARIMA requirement: ts *stationary*
+
 WHAT? constant mean; constant variance; constant covariance depending only on time interval.
 sources of non-stationarity
 
