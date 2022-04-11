@@ -4,6 +4,9 @@ read some popular papers and summarize their ideas.
 
 summarize different aspects of social impact, such as economy, education, etc.
 
+Recommendation:
+
+* [Individual differences and changes in subjective wellbeing during the early stages of the COVID-19 pandemic](https://psycnet.apa.org/doiLanding?doi=10.1037%2Famp0000702&errorCode=invalidAccess)
 
 ##  quantitative analysis
 utilize data from OECD & Google Trends for quantitative discussion.
