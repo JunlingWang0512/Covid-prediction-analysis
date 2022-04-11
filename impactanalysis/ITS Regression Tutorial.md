@@ -13,7 +13,9 @@ whether the change will be?
 * both
 
 
-prior decision based on *existing literature**and knowledge of the intervention and the mechanism by which it is expected to act on the outcome.
+prior decision based on 
+*existing literature
+*knowledge of the intervention and the mechanism by which it is expected to act on the outcome.
 
 Relying on the outcome data to select the best impact model will increase the likelihood of an effect being detected due to random fluctuation or chance.
 
