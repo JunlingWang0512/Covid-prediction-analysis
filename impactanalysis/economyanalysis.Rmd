@@ -33,23 +33,23 @@ The Starting Date & Ending Date is not very important.
 ## Basic Data Analysis
 load the data and convert it to time series
 ```{r}
-ue <- read.csv(file="../data/impact/unemploymentSwiss.csv")
+ue<- read.csv(file="../data/impact/unemploymentOECD.csv")
 head(ue)
 ue.ts <- ts(ue$Value)
-ue.len <- dim(ue)[1]
+ue.len <- length(ue.ts)
 intervention <- which(ue$TIME == "2020-04")
 ```
 
 plot the data
 ```{r}
-plot(ue.ts ,type="l",col="blue", xlab="Month", ylab="unemployment rate", main="OECD HUR(Swiss)",xaxt="n")
+plot(ue.ts ,type="l",col="red", xlab="Month", ylab="unemployment rate", main="OECD HUR",xaxt="n",ylim=c(2,10))
 axis(1, at=seq(1, ue.len),labels=ue$TIME, cex.axis = 0.6, las="2")
 abline(v=intervention,col="grey",lty="dashed", lwd=2)
 abline(v=intervention-1,col="grey",lty="dashed", lwd=2)
 ```
 plot the data after log-transform
 ```{r}
-plot(log(ue.ts) ,type="l",col="blue", xlab="Month", ylab="log unemployment rate", main="OECD HUR(Swiss)",xaxt="n")
+plot(log(ue.ts) ,type="l",col="blue", xlab="Month", ylab="log unemployment rate", main="OECD HUR",xaxt="n")
 axis(1, at=seq(1, ue.len),labels=ue$TIME, cex.axis = 0.6, las="2")
 abline(v=intervention,col="grey",lty="dashed", lwd=2)
 abline(v=intervention-1,col="grey",lty="dashed", lwd=2)
