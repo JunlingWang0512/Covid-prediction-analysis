@@ -59,7 +59,7 @@ Why?
     The zoom is released on 2011.
     And there is an improvement to Data Collection System on 2016 for Google Trend.
     The Data after it is also very stable intuitively.
-    Theirfore the specific choice of starting date is not essential.
+    There2fore the specific choice of starting date is not essential.
 
 4.  Why do we use Swiss Data?
     First, we are in Swiss.
@@ -129,7 +129,7 @@ We monitor it after analysis.
 
 set up the intervention effect
 ```{r}
-step <- rep(0,zoom.length)
+step <- rep(0, zoom.length)
 step[stayathome.ch:zoom.length] <- 1
 pulse <- rep(0,zoom.length)
 pulse[stayathome.ch] <- 1
@@ -193,7 +193,6 @@ plot(m$residuals,ylab="residuals", xlab="weeks",xaxt="n")
 axis(1, at=seq(1, zoom.length, 5),labels=substring(zoom.ch[seq(1,zoom.length,5), 1],3), cex.axis = 0.4, las="2")
 abline(v=stayathome.ch,col="grey",lty="dashed", lwd=2)
 ```
-
 We can see that the residuals seem to be stable intuitively.
 Notice there is an outlier which could be found on original time series plot.
 
@@ -201,6 +200,8 @@ test the autocorrelation and partial autocorrelation
 
 ```{r}
 acf(resid(m)[-1],lag=50, main="residuals")
+```
+```{r}
 pacf(resid(m)[-1],lag=50, main="residuals")
 ```
 
@@ -219,7 +220,6 @@ The residual is stable from DF test & KPSS test, compared with our raw data!
 The residuals passes the Box-Ljung test: we could regard it as white noise!
 
 ### Other Selection
-
 ```{r}
 m.ar3<-arimax(log(zoom.ts.ch), order=c(3, 0, 0), xreg = data.frame(step, ramp))
 m.ar3
@@ -253,9 +253,8 @@ test
 confint(m.season)
 adf.test(m.season$residuals)
 summary(ur.kpss(m.season$residuals))
-Box.test(m.season$residuals, lag = 80, type = "Ljung-Box")
+Box.test(m.season$residuals, lag = 60, type = "Ljung-Box")
 ```
-
 The coefficient for seasonal model is not significant to our noun but it is close to it.
 The seasonality could decrease AIC slightly and the p-value for Box-Ljung test can also be slightly bigger.
 We have more chance to admit the residuals are white noise.
@@ -267,6 +266,7 @@ In our experience, there should be seasonality for our data.
 Because, one heavy use of zoom is online course.As is known, there is no online course in summer and winter vacation.
 Therefore there should be a seasonality.
 However, the seasonality might not be obvious.The effect of this seasonality is not harmonious before or after intervention and can be ignored compared with current fluctuation.
+
 
 ## Another Case: ISR
 The school closed on March 14, 2020. The Stay at Home Policy Start from March 19, 2020. refer to
